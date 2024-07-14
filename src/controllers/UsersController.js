@@ -1,9 +1,16 @@
+const AppError = require("../utils/AppError")
+
+
 class UsersController {
     //MÁXIMO 5 MÉTODOS/FUNÇÕES
     create(request, response) {
-        const {name, password, email} = request.body
+        const {name, password, email} = request.body;
 
-        response.json(name, email, password);
+        if(!name) {
+            throw new AppError("NOME É OBRIGATÓRIO")
+        }
+
+        response.json({name, email, password});
     }
 }
 
