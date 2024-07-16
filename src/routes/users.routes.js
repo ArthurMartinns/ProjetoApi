@@ -4,15 +4,9 @@ const UsersController = require('../controllers/UsersController');
 
 const userRouter = Router();
 
-function myMiddleware(request, response, next){
-    if(!request.body.isAdmin) {
-       return response.json({message: "user não autorizada"})
-    }
-
-    next()
-}
-
 const usersController = new UsersController();
 
-userRouter.post("/", myMiddleware ,usersController.create)
+userRouter.post("/", usersController.create)
+userRouter.put("/:id" , usersController.update)
+
 module.exports = userRouter;  
