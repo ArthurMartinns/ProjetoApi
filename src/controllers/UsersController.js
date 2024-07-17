@@ -45,9 +45,10 @@ class UsersController {
       UPDATE users SET
       name = ?,
       email = ?,
-      updated_at = ?
+      password = ?,
+      updated_at = DATETIME('now')
       WHERE id = ?`, 
-      [user.name, user.email, new Date(), id]
+      [user.name, user.email, user.password, id]
     )
 
     return response.json()
